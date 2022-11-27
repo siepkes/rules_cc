@@ -220,13 +220,17 @@ def get_cpu_value(repository_ctx):
     Args:
       repository_ctx: The repository context.
     Returns:
-      One of (darwin, freebsd, x64_windows, ppc, s390x, arm, aarch64, k8, piii)
+      One of (darwin, freebsd, illumos, x64_windows, ppc, s390x, arm, aarch64, k8, piii)
     """
     os_name = repository_ctx.os.name.lower()
     if os_name.startswith("mac os"):
         return "darwin"
     if os_name.find("freebsd") != -1:
         return "freebsd"
+    if os_name.find("sunos") != -1:
+        # os_name is 'sunos' on Illumos. I'm guessing this value comes from 'os.name' in Java since it can
+        # also be 'mac os'.
+        return "illumos"
     if os_name.find("windows") != -1:
         return "x64_windows"
 
