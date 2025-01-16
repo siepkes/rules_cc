@@ -85,6 +85,7 @@ def _impl(ctx):
                             "-lstdc++",
                             "-Wl,-z,relro,-z,now",
                             "-no-canonical-prefixes",
+			    "-lm",
                         ],
                     ),
                 ],
